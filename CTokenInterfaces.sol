@@ -27,8 +27,11 @@ contract CTokenStorage {
      */
     uint8 public decimals;
 
-    // Maximum borrow rate that can ever be applied (.0005% / block)
-    uint internal constant borrowRateMaxMantissa = 0.0005e16;
+    // Assuming L1 chains block time is ~12s
+    uint internal constant SECONDS_PER_BLOCK = 12;
+
+    // Maximum borrow rate that can ever be applied (0.0005% / second)
+    uint internal constant borrowRateMaxMantissa = 0.0005e16 / SECONDS_PER_BLOCK;
 
     // Maximum fraction of interest that can be set aside for reserves
     uint internal constant reserveFactorMaxMantissa = 1e18;
